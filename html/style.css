@@ -1,0 +1,25 @@
+body {
+  background-color: rgb(197, 204, 212);
+}
+
+button {
+  color: black;
+  background: rgb(137, 169, 206);
+  border: 2px solid black;
+  border-radius: 7px;
+}
+
+#mainDiv {
+  border: 2px solid black;
+  margin: 40px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.numeros1a10 {
+
+
+}
