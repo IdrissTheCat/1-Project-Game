@@ -29,5 +29,36 @@ button {
   justify-content: center;
 }
 
-.numeros1a10 {
+#alternativesNums {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 50px;
+}
+
+#alternativa1 {
+  border: 1px solid black;
+  padding: 15px;
+  margin: 30px;
+  background-color: red;
+}
+
+#alternativa2 {
+  border: 1px solid black;
+  padding: 15px;
+  margin: 30px;
+  background-color: blue;
+}
+
+#alternativa3 {
+  border: 1px solid black;
+  padding: 15px;
+  margin: 30px;
+  background-color: wheat;
+}
+
+#topNumber h1 {
+  color: black;
+  text-align: center;
 }
