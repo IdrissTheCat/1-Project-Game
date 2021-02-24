@@ -19,7 +19,15 @@ button {
   justify-content: center;
 }
 
+#mainDiv2 {
+  border: 2px solid black;
+  margin: 40px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .numeros1a10 {
-
-
 }
