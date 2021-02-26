@@ -4,7 +4,7 @@ body {
 
 button {
   color: black;
-  background: rgb(137, 169, 206);
+  background: gray;
   border: 2px solid black;
   border-radius: 7px;
 }
@@ -41,24 +41,37 @@ button {
   border: 1px solid black;
   padding: 15px;
   margin: 30px;
-  background-color: red;
+  background-color: gray;
 }
 
 #alternativa2 {
   border: 1px solid black;
   padding: 15px;
   margin: 30px;
-  background-color: blue;
+  background-color: gray;
 }
 
 #alternativa3 {
   border: 1px solid black;
   padding: 15px;
   margin: 30px;
-  background-color: wheat;
+  background-color: gray;
 }
 
 #topNumber h1 {
   color: black;
   text-align: center;
+}
+
+#contadorVidas {
+  display: flex;
+  flex-direction: row;
+}
+
+#coração1 {
+  margin-left: 30px;
+}
+
+.coraçoesEmoji {
+  display: inline;
 }

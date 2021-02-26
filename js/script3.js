@@ -74,14 +74,29 @@ const todosObj =[
     },
 
 ]
-// quando o jogador acertar o current question vamos somar 1, e chamar showtoplayer novamente 
-let currentQuestion = Math.floor(Math.random() * 11);
 
-function showToPlayer (index){
+let pontos = 0;
+let vidas = 3;
+let coraçao3 = document.getElementById('coração3');
+let currentQuestion;
+
+function showToPlayer (){
+
+    
+
+    currentQuestion = Math.floor(Math.random() * todosObj.length);
+    
     // shownToPlayer é um obj que contem as propriedades numb, audio, alt, rightAns
-    const shownToPlayer = todosObj[index];
+    const shownToPlayer = todosObj[currentQuestion];
+
+    console.log(shownToPlayer);
 
     // escrever um numero no html
+    document.getElementById('numeroVidas').innerHTML = showLife(vidas);
+
+    const numeroPontos = `<h4>${pontos}</h4>`;
+    document.getElementById('placar').innerHTML =numeroPontos;
+
 
     const numberHtml = `<h1> ${shownToPlayer.number}</h1>`;
     document.getElementById('topNumber').innerHTML = numberHtml;
@@ -95,46 +110,25 @@ function showToPlayer (index){
     const alternativa3js = `<h1>${shownToPlayer.alternatives[2]}</h1>`;
     document.getElementById('alternativa3').innerHTML = alternativa3js;
 
+    const alternativeNums = document.getElementById('alternativesNums');
+    alternativeNums.setAttribute('answ', shownToPlayer.rightAns);
+
+
+    const alternative1Btn = document.getElementById("alternativa1");
+    alternative1Btn.style.backgroundColor = 'gray';
+    
+    const alternative2Btn = document.getElementById("alternativa2");
+    alternative2Btn.style.backgroundColor = 'gray';
+
+    const alternative3Btn = document.getElementById("alternativa3");
+    alternative3Btn.style.backgroundColor = 'gray';
+
     // tocar o audio referente ao numero mostrado na tela
     const audio = new Audio ();
     
     audio.src = "../audios/"+shownToPlayer.audio;
     audio.play()
 
-    const alternative1Btn = document.getElementById("alternativa1");
-    alternative1Btn.addEventListener("click", function() {
-        if (shownToPlayer.alternatives[0] === shownToPlayer.rightAns) {
-            
-            alternative1Btn.style.backgroundColor="green";
-        }
-        else if (shownToPlayer.alternatives[0] != shownToPlayer.rightAns){
-            alert("errou");
-        }
-    });
-
-    const alternative2Btn = document.getElementById("alternativa2");
-    alternative2Btn.addEventListener("click", function() {
-        if (shownToPlayer.alternatives[1] === shownToPlayer.rightAns) {
-            alternative2Btn.style.backgroundColor="green";
-            
-        }
-        else if (shownToPlayer.alternatives[1] != shownToPlayer.rightAns){
-            
-            alert("errou");
-        }
-    });
-
-        const alternative3Btn = document.getElementById("alternativa3");
-    alternative3Btn.addEventListener("click", function() {
-        if (shownToPlayer.alternatives[2] === shownToPlayer.rightAns) {
-            
-            alternative3Btn.style.backgroundColor="green";
-        }
-        else if (shownToPlayer.alternatives[2] != shownToPlayer.rightAns){
-            alert("errou");
-        }
-    });
-    
 
 
 };
@@ -147,9 +141,125 @@ alternativesNums.style.display="none";
 
 var playBtn = document.getElementById("playBtn");
 
+
+
+const alternative1Btn = document.getElementById("alternativa1");
+alternative1Btn.addEventListener("click", function() {
+const alternativeNumbers = document.getElementById('alternativesNums');
+
+    if (Number(alternative1Btn.innerText) === Number(alternativeNumbers.getAttribute('answ'))) {
+        
+
+        alternative1Btn.style.backgroundColor="green";
+        pontos +=1;
+        const numeroPontos = `<h4>${pontos}</h4>`;
+        document.getElementById('placar').innerHTML =numeroPontos;
+        console.log(`pontos`);
+        todosObj.splice(currentQuestion,1);
+        setTimeout(function(){
+            showToPlayer();  
+        }, 1000);
+        
+    }
+    else{
+        
+        vidas -=1;
+        
+        document.getElementById('numeroVidas').innerHTML = showLife(vidas);
+        
+        if (vidas==0) {
+            const htmlPag3 = document.getElementById('htmlPag3');
+            htmlPag3.innerHTML =`
+            <h1>GAME OVER</h1>
+            <button><a href="pag2.html">STUDY MORE AND PLAY AGAIN</a></button>
+            ` ;
+        } else {
+            showToPlayer();
+        }
+    }
+});
+
+const alternative2Btn = document.getElementById("alternativa2");
+alternative2Btn.addEventListener("click", function() {
+    const alternativeNumbers = document.getElementById('alternativesNums');
+    if (Number(alternative2Btn.innerText)  === Number(alternativeNumbers.getAttribute('answ'))) {
+        alternative2Btn.style.backgroundColor="green";
+        pontos +=1;
+        const numeroPontos = `<h4>${pontos}</h4>`;
+        document.getElementById('placar').innerHTML =numeroPontos;
+        console.log(`pontos`);
+        todosObj.splice(currentQuestion,1);
+        setTimeout(function(){
+            showToPlayer();  
+        }, 1000);
+        
+    }
+    else{
+        vidas -=1;
+        
+        document.getElementById('numeroVidas').innerHTML = showLife(vidas);
+        if (vidas==0) {
+            
+            const htmlPag3 = document.getElementById('htmlPag3');
+            htmlPag3.innerHTML =`
+            <h1>GAME OVER</h1>
+            <button><a href="pag2.html">STUDY MORE AND PLAY AGAIN</a></button>
+            ` ;
+        } else {
+            showToPlayer();
+        }
+    }
+});
+
+const alternative3Btn = document.getElementById("alternativa3");   
+alternative3Btn.addEventListener("click", function() {
+    const alternativeNumbers = document.getElementById('alternativesNums');
+    if (Number(alternative3Btn.innerText)  === Number(alternativeNumbers.getAttribute('answ'))) {
+        
+        alternative3Btn.style.backgroundColor="green";
+        pontos +=1;
+        const numeroPontos = `<h4>${pontos}</h4>`;
+        document.getElementById('placar').innerHTML =numeroPontos;
+        console.log(`pontos`);
+        todosObj.splice(currentQuestion,1);
+        setTimeout(function(){
+            showToPlayer();  
+        }, 1000);
+    }
+    else {
+       
+        vidas -=1;
+        
+        document.getElementById('numeroVidas').innerHTML = showLife(vidas);
+        if (vidas==0) {
+            const htmlPag3 = document.getElementById('htmlPag3');
+            htmlPag3.innerHTML =`
+            <h1>GAME OVER</h1>
+            <button><a href="pag2.html">STUDY MORE AND PLAY AGAIN</a></button>
+            ` ;
+        } else {
+            showToPlayer();
+        }
+        
+    }
+});
+
+function showLife (lives) {
+let allLives = "";
+    for (let i=0; i<lives ; i++) {
+const htmlVidas = `<h4 class="coraçoesEmoji">&#x2764;&#xFE0F;</h4>`
+allLives+=htmlVidas;
+
+}
+return allLives;
+
+}
+
+
+
 playBtn.addEventListener("click", function startGame() {
 
-    showToPlayer(currentQuestion)
+    showToPlayer();
     playBtn.style.display="none";
     alternativesNums.style.display="flex";
     
