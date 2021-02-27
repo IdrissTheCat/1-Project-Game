@@ -1,7 +1,8 @@
 // HTML 3
      
-
-
+//Gravei e subi os audios en WAV
+//Foi criado uma lista de objetos , nao precisou declarar as variaveis do 
+//audio nesse caso , só comocou o nome exato de como estavam os audios
 
 const todosObj =[
     { 
@@ -77,7 +78,6 @@ const todosObj =[
 
 let pontos = 0;
 let vidas = 3;
-let coraçao3 = document.getElementById('coração3');
 let currentQuestion;
 
 function showToPlayer (){
@@ -88,8 +88,6 @@ function showToPlayer (){
     
     // shownToPlayer é um obj que contem as propriedades numb, audio, alt, rightAns
     const shownToPlayer = todosObj[currentQuestion];
-
-    console.log(shownToPlayer);
 
     // escrever um numero no html
     document.getElementById('numeroVidas').innerHTML = showLife(vidas);
@@ -137,8 +135,6 @@ var alternativesNums = document.getElementById("alternativesNums");
 alternativesNums.style.display="none";
 
 
-
-
 var playBtn = document.getElementById("playBtn");
 
 
@@ -149,20 +145,56 @@ const alternativeNumbers = document.getElementById('alternativesNums');
 
     if (Number(alternative1Btn.innerText) === Number(alternativeNumbers.getAttribute('answ'))) {
         
-
+        const audioCorrect = new Audio ();
+    
+        audioCorrect.src = "../audios/Win.wav";     
+        audioCorrect.play()
+        
+        
+        
         alternative1Btn.style.backgroundColor="green";
+
+        
+
         pontos +=1;
+
+        if (pontos===10) {
+            const htmlPag3 = document.getElementById('htmlPag3');
+            htmlPag3.innerHTML =`
+            <h1>WELL DONE! YOU WON!</h1>
+            <button><a href="pag2.html">WANNA PLAY AGAIN?</a></button>
+            ` ;
+
+            const audioWonGame = new Audio ();
+    
+        audioWonGame.src = "../audios/WinnerFinal.wav";     
+        audioWonGame.play()    
+        }
+
+        else {  
+
         const numeroPontos = `<h4>${pontos}</h4>`;
         document.getElementById('placar').innerHTML =numeroPontos;
         console.log(`pontos`);
         todosObj.splice(currentQuestion,1);
+        
+    
+        
         setTimeout(function(){
             showToPlayer();  
         }, 1000);
+
+    }  
         
     }
     else{
-        
+
+        const audioWrong = new Audio ();
+    
+        audioWrong.src = "../audios/Duck.wav";     
+        audioWrong.play()    
+
+        alternative1Btn.style.backgroundColor="red";
         vidas -=1;
         
         document.getElementById('numeroVidas').innerHTML = showLife(vidas);
@@ -173,8 +205,17 @@ const alternativeNumbers = document.getElementById('alternativesNums');
             <h1>GAME OVER</h1>
             <button><a href="pag2.html">STUDY MORE AND PLAY AGAIN</a></button>
             ` ;
+
+            const audioLostGame = new Audio ();
+    
+            audioLostGame.src = "../audios/gameOver.wav";     
+            audioLostGame.play()     
+
+
         } else {
-            showToPlayer();
+            setTimeout(function(){
+                showToPlayer();  
+            }, 1000);
         }
     }
 });
@@ -183,18 +224,54 @@ const alternative2Btn = document.getElementById("alternativa2");
 alternative2Btn.addEventListener("click", function() {
     const alternativeNumbers = document.getElementById('alternativesNums');
     if (Number(alternative2Btn.innerText)  === Number(alternativeNumbers.getAttribute('answ'))) {
+
+        const audioCorrect = new Audio ();
+    
+        audioCorrect.src = "../audios/Win.wav";     
+        audioCorrect.play()
+   
         alternative2Btn.style.backgroundColor="green";
         pontos +=1;
+
+        if (pontos===10) {
+            const htmlPag3 = document.getElementById('htmlPag3');
+            htmlPag3.innerHTML =`
+            <h1>WELL DONE! YOU WON!</h1>
+            <button><a href="pag2.html">WANNA PLAY AGAIN?</a></button>
+            ` ;
+
+            const audioWonGame = new Audio ();
+    
+        audioWonGame.src = "../audios/WinnerFinal.wav";     
+        audioWonGame.play()    
+        }
+
+        else {  
+
         const numeroPontos = `<h4>${pontos}</h4>`;
         document.getElementById('placar').innerHTML =numeroPontos;
         console.log(`pontos`);
         todosObj.splice(currentQuestion,1);
+        
+    
+        
         setTimeout(function(){
             showToPlayer();  
         }, 1000);
+
+    }  
         
     }
+
+
+
     else{
+        const audioWrong = new Audio ();
+    
+        audioWrong.src = "../audios/Duck.wav";     
+        audioWrong.play()    
+
+        alternative2Btn.style.backgroundColor="red";
         vidas -=1;
         
         document.getElementById('numeroVidas').innerHTML = showLife(vidas);
@@ -205,8 +282,17 @@ alternative2Btn.addEventListener("click", function() {
             <h1>GAME OVER</h1>
             <button><a href="pag2.html">STUDY MORE AND PLAY AGAIN</a></button>
             ` ;
+            const audioLostGame = new Audio ();
+    
+            audioLostGame.src = "../audios/gameOver.wav";     
+            audioLostGame.play() 
+
+
+
         } else {
-            showToPlayer();
+            setTimeout(function(){
+                showToPlayer();  
+            }, 1000);
         }
     }
 });
@@ -215,18 +301,52 @@ const alternative3Btn = document.getElementById("alternativa3");
 alternative3Btn.addEventListener("click", function() {
     const alternativeNumbers = document.getElementById('alternativesNums');
     if (Number(alternative3Btn.innerText)  === Number(alternativeNumbers.getAttribute('answ'))) {
+
+        const audioCorrect = new Audio ();
+    
+        audioCorrect.src = "../audios/Win.wav";     
+        audioCorrect.play()
         
         alternative3Btn.style.backgroundColor="green";
         pontos +=1;
+
+        if (pontos===10) {
+            const htmlPag3 = document.getElementById('htmlPag3');
+            htmlPag3.innerHTML =`
+            <h1>WELL DONE! YOU WON!</h1>
+            <button><a href="pag2.html">WANNA PLAY AGAIN?</a></button>
+            ` ;
+
+            const audioWonGame = new Audio ();
+    
+        audioWonGame.src = "../audios/WinnerFinal.wav";     
+        audioWonGame.play()    
+        }
+
+        else {  
+
         const numeroPontos = `<h4>${pontos}</h4>`;
         document.getElementById('placar').innerHTML =numeroPontos;
         console.log(`pontos`);
         todosObj.splice(currentQuestion,1);
+        
+    
+        
         setTimeout(function(){
             showToPlayer();  
         }, 1000);
+
+    }  
+        
     }
     else {
+
+        const audioWrong = new Audio ();
+    
+        audioWrong.src = "../audios/Duck.wav";     
+        audioWrong.play()    
+
+        alternative3Btn.style.backgroundColor="red";
        
         vidas -=1;
         
@@ -237,8 +357,16 @@ alternative3Btn.addEventListener("click", function() {
             <h1>GAME OVER</h1>
             <button><a href="pag2.html">STUDY MORE AND PLAY AGAIN</a></button>
             ` ;
+
+
+            const audioLostGame = new Audio ();
+    
+            audioLostGame.src = "../audios/gameOver.wav";     
+            audioLostGame.play() 
         } else {
-            showToPlayer();
+            setTimeout(function(){
+                showToPlayer();  
+            }, 1000);
         }
         
     }
@@ -267,7 +395,5 @@ playBtn.addEventListener("click", function startGame() {
 });
 
 
-// Next steps trocar as cores do  HTML fontes
-// Logica de ganhar e perder fazer botao ficar verde quando ganha
-//Logica de tirar os que ja foram 
+
 
